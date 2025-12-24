@@ -1,4 +1,4 @@
-django-monolith-questionnaire-practic
+Django-monolith
 the django monolith questionnaire. a basic website with roles, authentication, and the ability to post and upload photos.
 
 Запуск
