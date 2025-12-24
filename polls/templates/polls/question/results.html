@@ -1,0 +1,41 @@
+{% extends "layout/basic.html" %}
+{% comment %} {% load static %} {% endcomment %}
+{% load thumbnail %}
+{% load choice_actions %}
+{% block title %} Результаты {% endblock %}
+{% block content %}
+    <h1>{{question.question_header}}</h1>
+    <p>{{ question.question_text }}</p>
+        <br>
+            <img class="question-img" src="{% thumbnail question.image 'scale_high' %}">
+        <br>
+    <div id="results">
+        <div>
+            <div class="choice">
+                <p>
+                    Выбор
+                </p>
+            </div>
+            <div class="votes">
+                <p>
+                    Голоса
+                </p>
+            </div>
+        </div>
+    {% for choice in question.choice_set.all %}
+        <div>
+            <div class="choice">
+                <p>
+                    {{ choice.choice_text }}
+                </p>
+            </div>
+            <div class="votes">
+                <p>
+{#                    использование кастомной библиотеки с функцией получения процента проголосовавших #}
+                    {{ choice|get_choice_percentage:question }}%
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

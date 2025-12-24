@@ -1,0 +1,16 @@
+{% extends "layout/basic.html" %}
+{% block title %} Вход {% endblock %}
+{% block content %}
+    <h1>Вход</h1>
+    <p>Не зарегистрированы? <a href="{% url 'polls:register' %}">Зарегистрируйтесь</a></p>
+    {% if user.is_authenticated %}
+        <p>Вы уже выполнили вход.</p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type="hidden" name="next" value="{{ next }}">
+            <button class="a-button" type="submit" name="submit">Завершить</button>
+        </form>
+    {% endif %}
+{% endblock %}

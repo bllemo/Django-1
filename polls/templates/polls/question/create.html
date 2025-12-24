@@ -1,0 +1,23 @@
+{% extends "layout/basic.html" %}
+{% block title %} Создание опроса {% endblock %}
+{% block content %}
+    <h1>Создать опрос</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <h3>Варианты ответа:</h3>
+        {{ formset.management_form }}
+        {% for choice in formset %}
+            <div>
+                {{ choice.id }}
+                {{ choice.as_p }}
+                <div class="form-delete">
+                    {{form.DELETE_label_tag}}
+                    {{form.DELETE}}
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit">Создать опрос</button>
+    </form>
+{% endblock %}
